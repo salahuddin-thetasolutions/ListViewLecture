@@ -62,7 +62,7 @@ public class UserAdapter extends ArrayAdapter<User> {
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-        View view=OLayoutInflater.inflate(R.layout.list_items,null);
+        View view=OLayoutInflater.inflate(R.layout.list_items,null,true);
 
 
         TextView fname=(TextView)view.findViewById(R.id.tvName);

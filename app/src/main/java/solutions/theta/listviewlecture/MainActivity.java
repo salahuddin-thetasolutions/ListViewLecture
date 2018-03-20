@@ -2,7 +2,10 @@ package solutions.theta.listviewlecture;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -12,6 +15,7 @@ import solutions.theta.listviewlecture.Model.User;
 public class MainActivity extends AppCompatActivity {
 ListView mLv;
     UserAdapter oUserAapter;
+    ArrayList<User> oListUsers;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,13 +37,21 @@ ListView mLv;
         User ouser4=new User();
         ouser4.setFirstName("Farooq");
         ouser4.setDrawableImage(R.drawable.user);
-        ArrayList<User> oListUsers=new ArrayList<User>();
+        oListUsers=new ArrayList<User>();
         oListUsers.add(ouser1);
         oListUsers.add(ouser2);
         oListUsers.add(ouser3);
         oListUsers.add(ouser4);
 
-        oUserAapter=new UserAdapter(getApplicationContext(),oListUsers);
+        oUserAapter=new UserAdapter(MainActivity.this,oListUsers);
         mLv.setAdapter(oUserAapter);
+
+        mLv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                User Ouser=oListUsers.get(position);
+                Toast.makeText(MainActivity.this, Ouser.getFirstName().toString(), Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }
